@@ -14,5 +14,7 @@ pub struct AuditLogSbContract {
     #[prost(string, tag = "4")]
     pub label: String,
     #[prost(string, tag = "5")]
+    pub who: String,
+    #[prost(string, tag = "6")]
     pub ctx: String,
 }
