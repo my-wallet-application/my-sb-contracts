@@ -7,8 +7,8 @@ service_sdk::macros::use_my_sb_entity_protobuf_model!();
 pub struct BidAskSbModel {
     #[prost(string, tag = "1")]
     pub id: ::prost::alloc::string::String,
-    #[prost(uint64, tag = "2")]
-    pub timestamp: u64,
+    #[prost(int64, tag = "2")]
+    pub timestamp: i64,
     #[prost(double, tag = "3")]
     pub bid: f64,
     #[prost(double, tag = "4")]
