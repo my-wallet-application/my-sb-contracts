@@ -16,4 +16,6 @@ pub struct ExecuteCryptoDepositSbModel {
     pub blockchain_transaction_id: String,
     #[prost(sint64, tag = "6")]
     pub timestamp: i64,
+    #[prost(string, tag = "7")]
+    pub who: String,
 }

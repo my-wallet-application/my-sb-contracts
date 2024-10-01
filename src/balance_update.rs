@@ -28,6 +28,8 @@ pub struct BalanceUpdateSbModel {
     pub balance: f64,
     #[prost(string, tag = "4")]
     pub client_id: String,
-    #[prost(message, repeated, tag = "5")]
+    #[prost(string, tag = "5")]
+    pub who: String,
+    #[prost(message, repeated, tag = "6")]
     pub ctx: Vec<ContextSbModel>,
 }
