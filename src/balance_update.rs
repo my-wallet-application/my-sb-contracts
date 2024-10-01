@@ -11,12 +11,14 @@ pub const TX_ID_CTX_KEY: &str = "tx_id";
 #[my_sb_entity_protobuf_model(topic_id = "balance-update")]
 pub struct BalanceUpdateNotificationSbModel {
     #[prost(string, tag = "1")]
+    pub operation_id: String,
+    #[prost(string, tag = "2")]
     pub process_id: String,
-    #[prost(sint64, tag = "2")]
+    #[prost(sint64, tag = "3")]
     pub timestamp: i64,
-    #[prost(string, tag = "3")]
+    #[prost(string, tag = "4")]
     pub who: String,
-    #[prost(message, repeated, tag = "4")]
+    #[prost(message, repeated, tag = "5")]
     pub updates: Vec<BalanceUpdateSbModel>,
 }
 

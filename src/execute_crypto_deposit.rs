@@ -5,17 +5,19 @@ use service_sdk::my_service_bus::macros::my_sb_entity_protobuf_model;
 #[my_sb_entity_protobuf_model(topic_id = "exec-crypto-deposit")]
 pub struct ExecuteCryptoDepositSbModel {
     #[prost(string, tag = "1")]
-    pub process_id: String,
+    pub operation_id: String,
     #[prost(string, tag = "2")]
-    pub client_id: String,
+    pub process_id: String,
     #[prost(string, tag = "3")]
+    pub client_id: String,
+    #[prost(string, tag = "4")]
     pub asset_id: String,
-    #[prost(double, tag = "4")]
+    #[prost(double, tag = "5")]
     pub amount: f64,
-    #[prost(string, tag = "5")]
+    #[prost(string, tag = "6")]
     pub blockchain_transaction_id: String,
-    #[prost(sint64, tag = "6")]
+    #[prost(sint64, tag = "7")]
     pub timestamp: i64,
-    #[prost(string, tag = "7")]
+    #[prost(string, tag = "8")]
     pub who: String,
 }
