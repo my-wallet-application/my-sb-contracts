@@ -3,6 +3,10 @@ use service_sdk::my_service_bus::macros::my_sb_entity_protobuf_model;
 
 use crate::ContextSbModel;
 
+pub const TYPE_CTX_KEY: &str = "type";
+pub const CRYPTO_DEPOSIT_TYPE_CTX_VALUE: &str = "crypto-deposit";
+pub const TX_ID_CTX_KEY: &str = "tx_id";
+
 #[derive(Clone, PartialEq, ::prost::Message)]
 #[my_sb_entity_protobuf_model(topic_id = "balance-update")]
 pub struct BalanceUpdateNotificationSbModel {
@@ -19,9 +23,11 @@ pub struct BalanceUpdateSbModel {
     #[prost(string, tag = "1")]
     pub wallet: String,
     #[prost(double, tag = "2")]
+    pub delta: f64,
+    #[prost(double, tag = "3")]
     pub balance: f64,
-    #[prost(string, tag = "3")]
+    #[prost(string, tag = "4")]
     pub client_id: String,
-    #[prost(message, repeated, tag = "4")]
+    #[prost(message, repeated, tag = "5")]
     pub ctx: Vec<ContextSbModel>,
 }
