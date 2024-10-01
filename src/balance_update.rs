@@ -95,7 +95,7 @@ impl BalanceUpdateNotificationSbModel {
                 crypto_deposit_address = Some(ctx.value.as_str());
             }
 
-            if ctx.key == CRYPTO_DEPOSIT_ADDRESS_KEY {
+            if ctx.key == CRYPTO_DEPOSIT_ADDRESS_MEMO_KEY {
                 crypto_deposit_address_memo = Some(ctx.value.as_str());
             }
         }
