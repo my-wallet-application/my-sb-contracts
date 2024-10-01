@@ -61,13 +61,15 @@ impl BalanceUpdateNotificationSbModel {
         });
     }
 
-    pub fn as_crypto_deposit_tx_id(&self) -> Option<&str> {
+    pub fn as_crypto_deposit_tx_id(&self) -> Option<CryptoDepositInfo> {
         if self.updates.len() != 1 {
             return None;
         }
+
+        let first_el = &self.updates.get(0).unwrap();
         let mut is_crypto_deposit = false;
         let mut tx_id = None;
-        for ctx in &self.updates.get(0).unwrap().ctx {
+        for ctx in &first_el.ctx {
             if ctx.key == TYPE_CTX_KEY && ctx.value == CRYPTO_DEPOSIT_TYPE_CTX_VALUE {
                 is_crypto_deposit = true;
             }
@@ -78,9 +80,26 @@ impl BalanceUpdateNotificationSbModel {
         }
 
         if is_crypto_deposit {
-            return tx_id;
+            if let Some(tx_id) = tx_id {
+                return CryptoDepositInfo {
+                    client_id: &first_el.client_id,
+                    delta: first_el.delta,
+                    balance: first_el.balance,
+                    tx_id,
+                    wallet_id: &first_el.wallet,
+                }
+                .into();
+            }
         }
 
         None
     }
+}
+
+pub struct CryptoDepositInfo<'s> {
+    pub client_id: &'s str,
+    pub delta: f64,
+    pub balance: f64,
+    pub tx_id: &'s str,
+    pub wallet_id: &'s str,
 }
