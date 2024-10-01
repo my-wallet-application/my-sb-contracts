@@ -5,17 +5,17 @@ use crate::ContextSbModel;
 
 #[derive(Clone, PartialEq, ::prost::Message)]
 #[my_sb_entity_protobuf_model(topic_id = "balance-update")]
-pub struct BalanceUpdateProtobufModel {
+pub struct BalanceUpdateNotificationSbModel {
     #[prost(string, tag = "1")]
     pub process_id: String,
     #[prost(sint64, tag = "2")]
     pub timestamp: i64,
     #[prost(message, repeated, tag = "3")]
-    pub updates: Vec<BalanceUpdate>,
+    pub updates: Vec<BalanceUpdateSbModel>,
 }
 
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BalanceUpdate {
+pub struct BalanceUpdateSbModel {
     #[prost(string, tag = "1")]
     pub wallet: String,
     #[prost(double, tag = "2")]
