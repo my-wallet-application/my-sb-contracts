@@ -14,7 +14,9 @@ pub struct BalanceUpdateNotificationSbModel {
     pub process_id: String,
     #[prost(sint64, tag = "2")]
     pub timestamp: i64,
-    #[prost(message, repeated, tag = "3")]
+    #[prost(string, tag = "3")]
+    pub who: String,
+    #[prost(message, repeated, tag = "4")]
     pub updates: Vec<BalanceUpdateSbModel>,
 }
 
@@ -28,8 +30,6 @@ pub struct BalanceUpdateSbModel {
     pub balance: f64,
     #[prost(string, tag = "4")]
     pub client_id: String,
-    #[prost(string, tag = "5")]
-    pub who: String,
-    #[prost(message, repeated, tag = "6")]
+    #[prost(message, repeated, tag = "5")]
     pub ctx: Vec<ContextSbModel>,
 }
