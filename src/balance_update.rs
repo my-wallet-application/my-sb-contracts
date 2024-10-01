@@ -33,3 +33,54 @@ pub struct BalanceUpdateSbModel {
     #[prost(message, repeated, tag = "5")]
     pub ctx: Vec<ContextSbModel>,
 }
+
+impl BalanceUpdateNotificationSbModel {
+    pub fn fill_ctx_as_crypto_deposit_operation(
+        &mut self,
+        client_id: String,
+        wallet_id: String,
+        delta: f64,
+        balance: f64,
+        blockchain_transaction_id: String,
+    ) {
+        self.updates.push(BalanceUpdateSbModel {
+            wallet: wallet_id,
+            balance,
+            delta,
+            client_id,
+            ctx: vec![
+                ContextSbModel {
+                    key: TYPE_CTX_KEY.to_string(),
+                    value: CRYPTO_DEPOSIT_TYPE_CTX_VALUE.to_string(),
+                },
+                ContextSbModel {
+                    key: TX_ID_CTX_KEY.to_string(),
+                    value: blockchain_transaction_id,
+                },
+            ],
+        });
+    }
+
+    pub fn as_crypto_deposit_tx_id(&self) -> Option<&str> {
+        if self.updates.len() != 1 {
+            return None;
+        }
+        let mut is_crypto_deposit = false;
+        let mut tx_id = None;
+        for ctx in &self.updates.get(0).unwrap().ctx {
+            if ctx.key == TYPE_CTX_KEY && ctx.value == CRYPTO_DEPOSIT_TYPE_CTX_VALUE {
+                is_crypto_deposit = true;
+            }
+
+            if ctx.key == TX_ID_CTX_KEY {
+                tx_id = Some(ctx.value.as_str());
+            }
+        }
+
+        if is_crypto_deposit {
+            return tx_id;
+        }
+
+        None
+    }
+}
