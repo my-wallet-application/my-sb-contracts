@@ -61,7 +61,7 @@ impl BalanceUpdateNotificationSbModel {
         });
     }
 
-    pub fn as_crypto_deposit_tx_id(&self) -> Option<CryptoDepositInfo> {
+    pub fn is_crypto_deposit(&self) -> Option<CryptoDepositInfo> {
         if self.updates.len() != 1 {
             return None;
         }
