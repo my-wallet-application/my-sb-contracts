@@ -10,8 +10,10 @@ pub struct AuditLogSbContract {
     #[prost(int64, tag = "2")]
     pub moment: i64,
     #[prost(string, tag = "3")]
-    pub who: String,
+    pub event_id: String,
     #[prost(string, tag = "4")]
+    pub who: String,
+    #[prost(string, tag = "5")]
     pub message: String,
     #[prost(string, tag = "6")]
     pub tech_data: String,
