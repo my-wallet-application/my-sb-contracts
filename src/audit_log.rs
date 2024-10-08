@@ -17,7 +17,7 @@ pub struct AuditLogSbContract {
     pub message: String,
     #[prost(string, tag = "6")]
     pub tech_data: String,
-    #[prost(string, tag = "7")]
+    #[prost(bool, tag = "7")]
     pub has_personal_data: bool,
     #[prost(string, tag = "8")]
     pub label: String,
