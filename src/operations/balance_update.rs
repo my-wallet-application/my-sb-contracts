@@ -10,7 +10,7 @@ pub const CRYPTO_DEPOSIT_ADDRESS_KEY: &str = "deposit_address";
 pub const CRYPTO_DEPOSIT_ADDRESS_MEMO_KEY: &str = "deposit_address_memo";
 
 #[derive(Clone, PartialEq, ::prost::Message)]
-#[my_sb_entity_protobuf_model(topic_id = "balance-update")]
+#[my_sb_entity_protobuf_model(topic_id = "balance-update-operation")]
 pub struct BalanceUpdateOperationSbModel {
     #[prost(string, tag = "1")]
     pub operation_id: String,
