@@ -11,7 +11,7 @@ pub const CRYPTO_DEPOSIT_ADDRESS_MEMO_KEY: &str = "deposit_address_memo";
 
 #[derive(Clone, PartialEq, ::prost::Message)]
 #[my_sb_entity_protobuf_model(topic_id = "balance-update")]
-pub struct BalanceUpdateNotificationSbModel {
+pub struct BalanceUpdateOperationSbModel {
     #[prost(string, tag = "1")]
     pub operation_id: String,
     #[prost(string, tag = "2")]
@@ -38,7 +38,7 @@ pub struct BalanceUpdateSbModel {
     pub ctx: Vec<ContextSbModel>,
 }
 
-impl BalanceUpdateNotificationSbModel {
+impl BalanceUpdateOperationSbModel {
     pub fn fill_ctx_as_crypto_deposit_operation(
         &mut self,
         model: &ExecuteCryptoDepositSbModel,
